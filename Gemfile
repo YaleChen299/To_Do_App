@@ -54,3 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "react-rails", "~> 2.6"
+
+# gem "jsonapi-resources", "~> 0.10.2"
+
+# gem "rails-api", "~> 0.4.1"
