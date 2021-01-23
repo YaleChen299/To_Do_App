@@ -23,10 +23,10 @@ function App() {
       tag: 'study'
     }
   ]
-
+   const show = '/api/tasks';
   return (
     <MainContent>
-      <TaskList tasks={arr}/>
+      <TaskList url={show}/>
     </MainContent>
   );
 }

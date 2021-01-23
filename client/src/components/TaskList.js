@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TaskItem from './TaskItem';
 
@@ -11,16 +11,29 @@ const ListContainer = styled.div`
 
 
 export default function TaskList(props) {
-    const [tasks, setTasks] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    
 
     useEffect(() => {
-        const response = async
-    });
+        fetch(props.url)
+            .then(res=>res.json())
+            .then(
+                (result) => {
+                    setTasks(result);
+                },
+                (error) => {
+                    setError(error);
+                }
+            )
+    },[]);
 
     
     return (
         <ListContainer>
-                {props.tasks.map((t, i) => {
+                {tasks.map((t, i) => {
                 return (
                     <TaskItem 
                         key={i}
