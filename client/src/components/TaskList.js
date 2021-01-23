@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import TaskItem from './TaskItem';
 
 const ListContainer = styled.div`
-    width: 60%;
-    @media only screen and (max-width: 768px) {
-        width: 70%;
-    }
+    width: 70%;
 `;
 
 
@@ -22,28 +19,35 @@ export default function TaskList(props) {
             .then(res=>res.json())
             .then(
                 (result) => {
+                    setIsLoaded(true);
                     setTasks(result);
                 },
                 (error) => {
+                    setIsLoaded(true);
                     setError(error);
                 }
             )
     },[]);
 
-    
-    return (
-        <ListContainer>
-                {tasks.map((t, i) => {
-                return (
-                    <TaskItem 
-                        key={i}
-                        title = {t.title}
-                        detail = {t.detail}
-                        tag = {t.tag}
-                    />
-                )
-            })}
-        </ListContainer>
-    );
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else {
+        return (
+            <ListContainer>
+                    {tasks.map((t, i) => {
+                    return (
+                        <TaskItem 
+                            key={i}
+                            title = {t.title}
+                            detail = {t.detail}
+                            tag = {t.tag}
+                        />
+                    )
+                })}
+            </ListContainer>
+        );
+    }
     
 }
