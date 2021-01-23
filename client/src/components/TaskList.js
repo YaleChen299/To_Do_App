@@ -5,7 +5,7 @@ import TaskItem from './TaskItem';
 const ListContainer = styled.div`
     width: 60%;
     @media only screen and (max-width: 768px) {
-        width: 80%;
+        width: 70%;
     }
 `;
 

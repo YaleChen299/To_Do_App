@@ -22,22 +22,19 @@ const Tag = styled.span`
     top: 30px;
 `;
 const Content = styled.div`
-    width: 50%;
+    width: 70%;
 `;
+
 const EditButton = styled(Edit)`
     cursor:pointer;
     width: 100%;
     height: 50%;
-    // padding: 5px;
 `;
-
 const DeleteButton = styled(Delete)`
     cursor:pointer;
     width: 100%;
     height: 50%;
-    // padding: 5px;
 `;
-
 const ButtonContainer = styled.div`
     margin: 0 0 0 15px;
     padding: 5px 0 5px 10px;
