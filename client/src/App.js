@@ -6,7 +6,7 @@ import TaskList from './components/TaskList';
 const MainContent = styled.div`
   padding: 10vh 10vw;
   @media only screen and (max-width: 768px) {
-    padding: 1vh 1vw;
+    padding: 1vh 3vw;
   }
 `;
 
