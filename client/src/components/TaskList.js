@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import TaskItem from './TaskItem';
 
 const ListContainer = styled.div`
-    width: 70%;
+    width: 80%;
+    @media only screen and (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 
@@ -27,7 +30,7 @@ export default function TaskList(props) {
                     setError(error);
                 }
             )
-    },[]);
+    },[props.url]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -36,7 +39,7 @@ export default function TaskList(props) {
     } else {
         return (
             <ListContainer>
-                    {tasks.map((t, i) => {
+                {tasks.map((t, i) => {
                     return (
                         <TaskItem 
                             key={i}
@@ -44,7 +47,7 @@ export default function TaskList(props) {
                             detail = {t.detail}
                             tag = {t.tag}
                         />
-                    )
+                    );
                 })}
             </ListContainer>
         );
