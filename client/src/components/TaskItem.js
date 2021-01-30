@@ -1,15 +1,15 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import {Edit} from '@styled-icons/boxicons-regular/Edit';
 import {Delete} from '@styled-icons/material/Delete';
 
 const StyledTaskItem = styled.div`
     width: 100%;
-    background-color: white;
-    padding: 15px;
-    margin: 10px 0;
+    background-color: rgba(26, 188, 156,0.5);
+    margin: 10px 0; 
     border-radius: 15px;
-    box-shadow: 1px 3px 8px grey;
+    box-shadow: 1px 2px 8px grey;
     display: flex;
     justify-content: space-between
 `;
@@ -22,34 +22,43 @@ const Tag = styled.div`
     border-radius: 30px;
 `;
 const Content = styled.div`
-    width: 70%;
+    width: 65%;
+    margin: 15px;
 `;
 
 const TagContainer = styled.div`
     width: 15%;
     min-width: 80px;
-    margin: 0 3%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 `;
 
-const EditButton = styled(Edit)`
+const buttonStyle = `
     cursor:pointer;
-    width: 100%;
-    height: 50%;
+    margin: 10px;
+    width: 40px;
+`;
+
+const EditButton = styled(Edit)`
+    ${buttonStyle}
+    :hover {
+        box-shadow: 0 0 5px rgba(180, 140, 0, 0.3), 0 0 12px rgb(120,100,0,0.2);
+        background-color: rgba(241, 196, 15,0.5);
+    }
 `;
 const DeleteButton = styled(Delete)`
-    cursor:pointer;
-    width: 100%;
-    height: 50%;
+    ${buttonStyle}
+    :hover {
+        box-shadow: 0 0 5px rgba(192, 57, 43,0.3), 0 0 12px rgba(192, 57, 43,0.2);
+        background-color: rgba(231, 76, 60,0.5);
+    }
 `;
 const ButtonContainer = styled.div`
-    padding: 5px 0 5px 5px;
-    border-left: medium solid grey;
+    margin: 15px 30px;
+    border-left: solid grey;
     width: 5%;
-    min-width: 30px;
-    diplay: flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
 `;
@@ -61,7 +70,9 @@ export default function TaskItem(props) {
     };
 
     const handleDelete = () => {
-        
+        if (window.confirm("You are about to delete this task!")) {
+            props.deleteTask(props.id);
+        }
     };
 
     const tag = props.tag.split(" ");
@@ -83,10 +94,10 @@ export default function TaskItem(props) {
             <ButtonContainer>
                 <EditButton
                     onClick={handleEdit}
-                    ></EditButton>
+                />
                 <DeleteButton
                     onclick={handleDelete}
-                    ></DeleteButton>
+                />
             </ButtonContainer>
         </StyledTaskItem>
     );

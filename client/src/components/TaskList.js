@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import styled from 'styled-components';
+
 import TaskItem from './TaskItem';
+
 
 const ListContainer = styled.div`
     width: 80%;
@@ -11,46 +14,20 @@ const ListContainer = styled.div`
 
 
 export default function TaskList(props) {
-    const [tasks, setTasks] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    
-
-    useEffect(() => {
-        fetch(props.url)
-            .then(res=>res.json())
-            .then(
-                (result) => {
-                    setIsLoaded(true);
-                    setTasks(result);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    },[props.url]);
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
-    } else {
-        return (
-            <ListContainer>
-                {tasks.map((t, i) => {
-                    return (
-                        <TaskItem 
-                            key={i}
-                            title = {t.title}
-                            detail = {t.detail}
-                            tag = {t.tag}
-                        />
-                    );
-                })}
-            </ListContainer>
-        );
-    }
-    
+    return (
+        <ListContainer>
+            {props.tasks.map((t, i) => {
+                return (
+                    <TaskItem 
+                        key={i}
+                        id={t.id}
+                        title = {t.title}
+                        detail = {t.detail}
+                        tag = {t.tag}
+                        deleteTask={props.deleteTask}
+                    />
+                );
+            })}
+        </ListContainer>
+    );
 }
